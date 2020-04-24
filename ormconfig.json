@@ -1,0 +1,6 @@
+{
+  "name": "default",
+  "synchronize": true,
+  "logging": true,
+  "entities": ["src/entity/*.*"]
+}
