@@ -16,11 +16,11 @@ export class ChangeForgottenPasswordResolver {
     { token, password }: ChangePasswordInput,
     @Ctx() ctx: ExpressContext
   ): Promise<ApiResponse> {
-    const userId = await redis.get(forgotPasswordPrefix + token);
+    const profileId = await redis.get(forgotPasswordPrefix + token);
 
-    const user = await Profile.findOne({ where: { id: userId } });
+    const profile = await Profile.findOne({ where: { id: profileId } });
 
-    if (!user) {
+    if (!profile) {
       return {
         message: "Token has expired. 💀",
         status: false,
@@ -33,16 +33,16 @@ export class ChangeForgottenPasswordResolver {
         status: false,
       };
     } else {
-      user.password = await bcrypt.hash(password, 12);
+      profile.password = await bcrypt.hash(password, 12);
 
       await redis.del(forgotPasswordPrefix + token);
 
-      await user.save();
+      await profile.save();
 
       if (ctx.req.session) {
-        ctx.req.session.userId = user.id;
-        ctx.req.session.email = user.email;
-        ctx.req.session.artisan = user.artisan;
+        ctx.req.session.profileId = profile.id;
+        ctx.req.session.email = profile.email;
+        ctx.req.session.artisan = profile.artisan;
       }
 
       return {

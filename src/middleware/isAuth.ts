@@ -6,7 +6,7 @@ export const isAuth: MiddlewareFn<ExpressContext> = async (
   { context },
   next
 ) => {
-  if (!context.req.session?.userId) {
+  if (!context.req.session?.profileId) {
     throw new Error("User is not authenticated! 💀");
   }
 

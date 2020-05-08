@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
-import { ObjectType, Field, ID } from "type-graphql";
+import { ObjectType, Field, ID, Root } from "type-graphql";
 
 @ObjectType()
 @Entity()
@@ -14,7 +14,16 @@ export class Profile extends BaseEntity {
 
   @Field()
   @Column("text", { unique: true })
-  username: string;
+  firstName: string;
+
+  @Field()
+  @Column("text", { unique: true })
+  lastName: string;
+
+  @Field(() => String)
+  displayName(@Root() parent: Profile): string {
+    return `${parent.firstName} ${parent.lastName}`;
+  }
 
   @Column()
   password: string;
@@ -30,4 +39,7 @@ export class Profile extends BaseEntity {
   @Field()
   @Column({ default: false })
   artisan: boolean;
+
+  @Column("bool", { default: false })
+  confirmed: boolean;
 }

@@ -1,16 +1,10 @@
-import { ExpressContext } from "./../../types/index";
+import { createConfirmationUrl } from "./../../nodemailer/createConfirmationUrl";
 import { Profile } from "../../entity/Profile";
 import { RegisterInput } from "../../inputs/RegisterInput";
 import { logger, isAuth } from "../../middleware";
-import {
-  Resolver,
-  UseMiddleware,
-  Query,
-  Mutation,
-  Arg,
-  Ctx,
-} from "type-graphql";
+import { Resolver, UseMiddleware, Query, Mutation, Arg } from "type-graphql";
 import bcrypt from "bcryptjs";
+import { sendEmail } from "../../nodemailer/sendEmail";
 
 @Resolver()
 export class RegisterResolver {
@@ -24,13 +18,21 @@ export class RegisterResolver {
   @Mutation(() => Profile)
   async register(
     @Arg("data")
-    { email, username, password, tzAbv, tzName, artisan }: RegisterInput,
-    @Ctx() ctx: ExpressContext
+    {
+      email,
+      firstName,
+      lastName,
+      password,
+      tzAbv,
+      tzName,
+      artisan,
+    }: RegisterInput
   ): Promise<Profile> {
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    const user = await Profile.create({
-      username,
+    const profile = await Profile.create({
+      firstName,
+      lastName,
       email,
       password: hashedPassword,
       tzAbv,
@@ -38,12 +40,12 @@ export class RegisterResolver {
       artisan,
     }).save();
 
-    if (ctx.req.session) {
-      ctx.req.session.userId = user.id;
-      ctx.req.session.email = user.email;
-      ctx.req.session.artisan = user.artisan;
-    }
+    await sendEmail(
+      email,
+      await createConfirmationUrl(profile.id),
+      "Confirm your account now!"
+    );
 
-    return user;
+    return profile;
   }
 }

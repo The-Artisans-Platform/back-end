@@ -2,26 +2,46 @@ import nodemailer from "nodemailer";
 
 require("dotenv").config();
 
-export async function sendEmail(email: string, url: string): Promise<void> {
-  // const testAccount = await nodemailer.createTestAccount();
-
+export async function sendEmail(
+  email: string,
+  url: string,
+  subject: string
+): Promise<void> {
   const transporter = nodemailer.createTransport({
-    // host: "smtp.ethereal.email",
     host: "smtp.gmail.com",
     port: 587,
-    secure: false, // true for 465, false for other ports
+    secure: false, // true for 465, false for other ports like 587
     auth: {
-      user: "tetris.react@gmail.com",
+      // type: "OAuth2",
+      user: "jimmy@theartisansplatform.com",
       pass: process.env.EMAIL_PASSWORD,
-      // user: testAccount.user,
-      // pass: testAccount.pass,
+      // serviceClient: process.env.CLIENT_ID,
+      // privateKey:
+      //   process,
+      // accessToken:
+      //   process.env.ACCESS_TOKEN,
+      // refreshToken:
+      //   process.env.REFRESH_TOKEN,
     },
   });
 
+  // eslint-disable-next-line
+  // @ts-ignore
+  // transporter.set("oauth2_provision_cb", (user, renew, callback) => {
+  //   // eslint-disable-next-line
+  //   // @ts-ignore
+  //   const accessToken = userTokens[user];
+  //   if (!accessToken) {
+  //     return callback(new Error("Unknown user"));
+  //   } else {
+  //     return callback(null, accessToken);
+  //   }
+  // });
+
   const mailOptions = {
-    from: '"Tetrix 🕹" <tetris.react@gmail.com>', // sender address
+    from: "'no reply' <jimmy@theartisansplatform.com>", // sender address
     to: email, // list of receivers
-    subject: "Forgot your password ❓", // Subject line
+    subject: subject, // Subject line
     text: "Click on this link to change your password!", // plain text body
     html: `<a href="${url}">${url}</a>`, // html body
   };

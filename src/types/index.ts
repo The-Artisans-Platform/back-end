@@ -1,4 +1,4 @@
-import { User } from "../entity/User";
+import { Profile } from "../entity/Profile";
 import { Request, Response } from "express";
 import { ObjectType, Field } from "type-graphql";
 import { Stream } from "stream";
@@ -26,6 +26,6 @@ export class ApiResponse {
 
 @ObjectType()
 export class AuthResponse extends ApiResponse {
-  @Field(() => User, { nullable: true })
-  user: User | null;
+  @Field(() => Profile, { nullable: true })
+  profile: Profile | null;
 }

@@ -14,7 +14,7 @@ export class IsThatAnEmail implements ValidatorConstraintInterface {
 }
 
 export function IsThatReallyAnEmail(validationOptions?: ValidationOptions) {
-  return function (object: Object, propertyName: string) {
+  return function (object: object, propertyName: string): void {
     registerDecorator({
       target: object.constructor,
       propertyName: propertyName,

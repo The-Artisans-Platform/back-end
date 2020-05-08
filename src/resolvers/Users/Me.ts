@@ -10,10 +10,10 @@ export class Me {
   async currentUser(
     @Ctx() ctx: ExpressContext
   ): Promise<Profile | undefined | string> {
-    if (!ctx.req.session?.userId) {
+    if (!ctx.req.session?.profileId) {
       return "Please log in to get current user. 💩";
     }
 
-    return Profile.findOne(ctx.req.session?.userId);
+    return Profile.findOne(ctx.req.session?.profileId);
   }
 }

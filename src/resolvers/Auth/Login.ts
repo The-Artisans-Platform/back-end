@@ -11,35 +11,43 @@ export class LoginResolver {
   @UseMiddleware(logger)
   @Mutation(() => AuthResponse)
   async login(
-    @Arg("data") { username, password }: LoginInput,
+    @Arg("data") { email, password }: LoginInput,
     @Ctx() ctx: ExpressContext
   ): Promise<AuthResponse> {
-    const user = await Profile.findOne({
-      where: { username },
+    const profile = await Profile.findOne({
+      where: { email },
     });
 
-    if (!user) {
+    if (!profile) {
       return {
-        message: "Username not found. 🤷‍♂",
+        message: "Email not found. 🤷‍♂",
         status: false,
-        user: null,
+        profile: null,
       };
     }
 
-    const valid = await bcrypt.compare(password, user.password);
+    if (!profile.confirmed) {
+      return {
+        message: "Please check your email to confirm your account. Thanks! 🎉",
+        status: false,
+        profile: null,
+      };
+    }
+
+    const valid = await bcrypt.compare(password, profile.password);
 
     if (!valid) {
       return {
         message: "Password is not valid. 💀",
         status: false,
-        user: null,
+        profile: null,
       };
     }
 
     if (ctx.req.session) {
-      ctx.req.session.userId = user.id;
-      ctx.req.session.email = user.email;
-      ctx.req.session.artisan = user.artisan;
+      ctx.req.session.profileId = profile.id;
+      ctx.req.session.email = profile.email;
+      ctx.req.session.artisan = profile.artisan;
     }
 
     console.log(ctx.req.session);
@@ -47,7 +55,7 @@ export class LoginResolver {
     return {
       message: "Successfully logged in. 🔥",
       status: true,
-      user: user,
+      profile: profile,
     };
   }
 }

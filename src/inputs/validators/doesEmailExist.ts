@@ -5,21 +5,21 @@ import {
   ValidatorConstraintInterface,
 } from "class-validator";
 
-import { User } from "../../entity/User";
+import { Profile } from "../../entity/Profile";
 
 @ValidatorConstraint({ async: true })
 export class IfEmailAlreadyExistConstraint
   implements ValidatorConstraintInterface {
   async validate(email: string): Promise<boolean> {
-    return User.findOne({ where: { email } }).then((user) => {
-      if (user) return false;
+    return Profile.findOne({ where: { email } }).then((profile) => {
+      if (profile) return false;
       return true;
     });
   }
 }
 
 export function DoesEmailAlreadyExist(validationOptions?: ValidationOptions) {
-  return function (object: Object, propertyName: string) {
+  return function (object: object, propertyName: string): void {
     registerDecorator({
       target: object.constructor,
       propertyName: propertyName,
