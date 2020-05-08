@@ -8,5 +8,7 @@ export const createForgotPasswordUrl = async (
   const token = v4();
   await redis.set(forgotPasswordPrefix + token, profileId, "ex", 60 * 60 * 24); // 1 day expiration
 
+  console.log(token);
+
   return `${process.env.FRONT_END_URL}protected/forgot-password/${token}`;
 };

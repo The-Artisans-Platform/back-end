@@ -3,8 +3,8 @@ import { Profile } from "../../entity/Profile";
 import { RegisterInput } from "../../inputs/RegisterInput";
 import { logger, isAuth } from "../../middleware";
 import { Resolver, UseMiddleware, Query, Mutation, Arg } from "type-graphql";
-import bcrypt from "bcryptjs";
 import { sendEmail } from "../../nodemailer/sendEmail";
+import bcrypt from "bcryptjs";
 
 @Resolver()
 export class RegisterResolver {

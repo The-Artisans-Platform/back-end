@@ -25,19 +25,6 @@ export async function sendEmail(
     },
   });
 
-  // eslint-disable-next-line
-  // @ts-ignore
-  // transporter.set("oauth2_provision_cb", (user, renew, callback) => {
-  //   // eslint-disable-next-line
-  //   // @ts-ignore
-  //   const accessToken = userTokens[user];
-  //   if (!accessToken) {
-  //     return callback(new Error("Unknown user"));
-  //   } else {
-  //     return callback(null, accessToken);
-  //   }
-  // });
-
   const mailOptions = {
     from: "'no reply' <jimmy@theartisansplatform.com>", // sender address
     to: email, // list of receivers
@@ -49,6 +36,4 @@ export async function sendEmail(
   const info = await transporter.sendMail(mailOptions);
 
   console.log("Message sent: %s", info.messageId);
-  // Preview only available when sending through an Ethereal account
-  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 }

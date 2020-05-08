@@ -1,6 +1,5 @@
 import { PasswordInput } from "./PasswordInput";
 import { Field, InputType } from "type-graphql";
-import { DoesUsernameAlreadyExist } from "./validators/doesUsernameExist";
 import { DoesEmailAlreadyExist } from "./validators/doesEmailExist";
 import { IsThatReallyAnEmail } from "./validators/isThatAnEmail";
 import { FirstNamePresence } from "./validators/isFirstNamePresent";
@@ -9,17 +8,11 @@ import { LastNamePresence } from "./validators/isLastNamePresent";
 @InputType()
 export class RegisterInput extends PasswordInput {
   @Field()
-  @FirstNamePresence({ message: "You forgot to put in a username. 😒" })
-  @DoesUsernameAlreadyExist({
-    message: "That username is already in use! 💩",
-  })
+  @FirstNamePresence({ message: "You forgot to put in your first name. 😒" })
   firstName: string;
 
   @Field()
-  @LastNamePresence({ message: "You forgot to put in a username. 😒" })
-  @DoesUsernameAlreadyExist({
-    message: "That username is already in use! 💩",
-  })
+  @LastNamePresence({ message: "You forgot to put in your last name. 😒" })
   lastName: string;
 
   @Field({ nullable: true })

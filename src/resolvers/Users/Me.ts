@@ -7,9 +7,7 @@ import { Resolver, UseMiddleware, Query, Ctx } from "type-graphql";
 export class Me {
   @UseMiddleware(isAuth)
   @Query(() => Profile, { nullable: true })
-  async currentUser(
-    @Ctx() ctx: ExpressContext
-  ): Promise<Profile | undefined | string> {
+  async me(@Ctx() ctx: ExpressContext): Promise<Profile | undefined | string> {
     if (!ctx.req.session?.profileId) {
       return "Please log in to get current user. 💩";
     }
