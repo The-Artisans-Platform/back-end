@@ -15,7 +15,7 @@ export class ConfirmAccountResolver {
         throw new Error("The token has already been used or expired. 💀");
       }
 
-      Profile.update({ id: parseInt(profileId, 10) }, { confirmed: true });
+      Profile.update({ id: profileId }, { confirmed: true });
 
       await redis.del(confirmProfilePrefix + token);
 

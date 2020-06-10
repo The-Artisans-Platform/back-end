@@ -10,6 +10,7 @@
   "scripts": {
     "start": "ts-node src/index.ts",
     "server": "nodemon src/index.ts",
+    "redis": "cd src && redis-server",
     "db:setup": "ts-node ./__test-utils__/setup.ts",
     "test": "yarn db:setup && jest",
     "coverage": "yarn test --coverage --detectOpenHandles --forceExit || true",

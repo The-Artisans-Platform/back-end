@@ -3,7 +3,7 @@ import { redis } from "../redis";
 import { forgotPasswordPrefix } from "./prefixes";
 
 export const createForgotPasswordUrl = async (
-  profileId: number
+  profileId: string
 ): Promise<string> => {
   const token = v4();
   await redis.set(forgotPasswordPrefix + token, profileId, "ex", 60 * 60 * 24); // 1 day expiration

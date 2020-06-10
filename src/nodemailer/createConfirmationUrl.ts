@@ -3,7 +3,7 @@ import { redis } from "../redis";
 import { confirmProfilePrefix } from "./prefixes";
 
 export const createConfirmationUrl = async (
-  profileId: number
+  profileId: string
 ): Promise<string> => {
   const token = v4();
   await redis.set(confirmProfilePrefix + token, profileId, "ex", 60 * 60 * 24); // 1 day expiration
