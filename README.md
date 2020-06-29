@@ -1,8 +1,8 @@
 # The Artisans Platform User Authentication
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/bfe3e2f66db2319dbb3d/maintainability)](https://codeclimate.com/github/tetris-react/back-end/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/7f8e94a77de88b6ae16e/maintainability)](https://codeclimate.com/github/The-Artisans-Platform/Back-End/maintainability)
 
-[![Test Coverage](https://api.codeclimate.com/v1/badges/bfe3e2f66db2319dbb3d/test_coverage)](https://codeclimate.com/github/tetris-react/back-end/test_coverage)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/7f8e94a77de88b6ae16e/test_coverage)](https://codeclimate.com/github/The-Artisans-Platform/Back-End/test_coverage)
 
 **Core TechStack:**
 
