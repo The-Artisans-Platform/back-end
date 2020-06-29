@@ -7,3 +7,6 @@ yarn-error.log
 
 # testing stuff
 /coverage
+
+# service account
+artisans-platform-0a318c50639c.json

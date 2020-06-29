@@ -13,7 +13,7 @@ export async function sendEmail(
     secure: false, // true for 465, false for other ports like 587
     auth: {
       // type: "OAuth2",
-      user: "jimmy@theartisansplatform.com",
+      user: "theartisansplatform@gmail.com",
       pass: process.env.EMAIL_PASSWORD,
       // serviceClient: process.env.CLIENT_ID,
       // privateKey:
@@ -26,7 +26,7 @@ export async function sendEmail(
   });
 
   const mailOptions = {
-    from: "'no reply' <jimmy@theartisansplatform.com>", // sender address
+    from: "'no reply' <theartisansplatform@gmail.com>", // sender address
     to: email, // list of receivers
     subject: subject, // Subject line
     text: "Click on this link to change your password!", // plain text body

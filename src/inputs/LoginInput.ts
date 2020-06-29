@@ -7,4 +7,10 @@ export class LoginInput extends PasswordInput {
   @Field()
   @EmailPresence({ message: "You forgot to put in a email. 😒" })
   email: string;
+
+  @Field({ nullable: true })
+  tzAbv: string;
+
+  @Field({ nullable: true })
+  tzName: string;
 }

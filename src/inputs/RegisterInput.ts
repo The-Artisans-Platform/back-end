@@ -15,7 +15,7 @@ export class RegisterInput extends PasswordInput {
   @LastNamePresence({ message: "You forgot to put in your last name. 😒" })
   lastName: string;
 
-  @Field({ nullable: true })
+  @Field()
   @IsThatReallyAnEmail({
     message: "I'm not gunna lie, I don't think that's a real email. 🛑",
   })

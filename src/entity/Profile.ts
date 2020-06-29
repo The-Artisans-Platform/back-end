@@ -13,11 +13,11 @@ export class Profile extends BaseEntity {
   email: string;
 
   @Field()
-  @Column("text", { unique: true })
+  @Column("text")
   firstName: string;
 
   @Field()
-  @Column("text", { unique: true })
+  @Column("text")
   lastName: string;
 
   @Field(() => String)

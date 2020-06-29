@@ -9,8 +9,8 @@
   "private": false,
   "scripts": {
     "start": "ts-node src/index.ts",
-    "server": "nodemon src/index.ts",
-    "redis": "cd src && redis-server",
+    "dev": "nodemon src/index.ts",
+    "redis": "redis-server",
     "db:setup": "ts-node ./__test-utils__/setup.ts",
     "test": "yarn db:setup && jest",
     "coverage": "yarn test --coverage --detectOpenHandles --forceExit || true",
@@ -40,6 +40,7 @@
     "ts-node-dev": "^1.0.0-pre.44"
   },
   "dependencies": {
+    "@google-cloud/storage": "^5.0.1",
     "@types/bcryptjs": "^2.4.2",
     "@types/connect-redis": "^0.0.13",
     "@types/cors": "^2.8.6",
