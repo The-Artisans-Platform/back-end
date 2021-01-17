@@ -10,3 +10,6 @@ yarn-error.log
 
 # service account
 artisans-platform-0a318c50639c.json
+
+# Redis Data File
+dump.rdb
