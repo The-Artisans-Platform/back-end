@@ -22,7 +22,7 @@ const storage = new Storage({
 
 export const tapFilesBucket = storage.bucket("artisans-platform.appspot.com");
 
-console.log("tapFilesBucket", tapFilesBucket);
+// console.log("tapFilesBucket", tapFilesBucket);
 
 import { redis } from "./redis";
 import { createSchema } from "./createSchema";
