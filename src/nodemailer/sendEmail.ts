@@ -12,16 +12,8 @@ export async function sendEmail(
     port: 587,
     secure: false, // true for 465, false for other ports like 587
     auth: {
-      // type: "OAuth2",
-      user: "theartisansplatform@gmail.com",
+      user: "jimmy@theartisansplatform.com",
       pass: process.env.EMAIL_PASSWORD,
-      // serviceClient: process.env.CLIENT_ID,
-      // privateKey:
-      //   process,
-      // accessToken:
-      //   process.env.ACCESS_TOKEN,
-      // refreshToken:
-      //   process.env.REFRESH_TOKEN,
     },
   });
 
