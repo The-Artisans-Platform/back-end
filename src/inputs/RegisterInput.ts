@@ -23,10 +23,7 @@ export class RegisterInput extends PasswordInput {
   email: string;
 
   @Field({ nullable: true })
-  tzAbv: string;
-
-  @Field({ nullable: true })
-  tzName: string;
+  mailingList: boolean;
 
   @Field({ nullable: true })
   artisan: boolean;

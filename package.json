@@ -64,6 +64,7 @@
     "nodemailer": "^6.4.6",
     "pg": "^8.0.3",
     "reflect-metadata": "^0.1.13",
+    "stripe": "^8.131.1",
     "ts-node": "^8.10.1",
     "type-graphql": "^1.0.0-rc.1",
     "typeorm": "^0.2.24",
