@@ -9,8 +9,8 @@ export async function sendEmail(
 ): Promise<void> {
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
-    port: 587,
-    secure: false, // true for 465, false for other ports like 587
+    port: 465,
+    secure: true, // true for 465, false for other ports like 587
     auth: {
       user: "jimmy@theartisansplatform.com",
       pass: process.env.EMAIL_PASSWORD,
@@ -20,7 +20,7 @@ export async function sendEmail(
   const mailOptions = {
     from: "'no reply' <theartisansplatform@gmail.com>", // sender address
     to: email, // list of receivers
-    subject: subject, // Subject line
+    subject, // Subject line
     text: "Click on this link to change your password!", // plain text body
     html: `<a href="${url}">${url}</a>`, // html body
   };

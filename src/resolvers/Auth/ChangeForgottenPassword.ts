@@ -6,7 +6,6 @@ import { logger } from "./../../middleware/logger";
 import { ExpressContext } from "./../../types/index";
 import { Profile } from "../../entity/Profile";
 import { Resolver, Mutation, Arg, Ctx, UseMiddleware } from "type-graphql";
-import bcrypt from "bcryptjs";
 
 @Resolver()
 export class ChangeForgottenPasswordResolver {
@@ -33,7 +32,6 @@ export class ChangeForgottenPasswordResolver {
       if (password !== confirmPassword) {
         throw new Error("Passwords do not match. 😤");
       }
-      profile.password = await bcrypt.hash(password, 12);
 
       redis.del(forgotPasswordPrefix + token);
 

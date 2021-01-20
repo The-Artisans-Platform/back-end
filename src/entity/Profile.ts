@@ -1,5 +1,13 @@
-import { Entity, PrimaryColumn, Column, BaseEntity } from "typeorm";
+import {
+  Entity,
+  PrimaryColumn,
+  Column,
+  BaseEntity,
+  BeforeInsert,
+} from "typeorm";
 import { ObjectType, Field, ID, Root } from "type-graphql";
+import { v4 } from "uuid";
+import bcrypt from "bcryptjs";
 
 @ObjectType()
 @Entity()
@@ -29,17 +37,24 @@ export class Profile extends BaseEntity {
   password: string;
 
   @Field()
-  @Column("text", { default: "Etc/UTC" })
-  tzName: string;
-
-  @Field()
-  @Column("text", { default: "UTC" })
-  tzAbv: string;
-
-  @Field()
   @Column({ default: false })
   artisan: boolean;
 
+  @Field()
   @Column("bool", { default: false })
   confirmed: boolean;
+
+  @Field()
+  @Column("bool", { default: false })
+  mailingList: boolean;
+
+  @BeforeInsert()
+  addId(): void {
+    this.id = v4();
+  }
+
+  @BeforeInsert()
+  async hashPassword(): Promise<void> {
+    this.password = await bcrypt.hash(this.password, 12);
+  }
 }

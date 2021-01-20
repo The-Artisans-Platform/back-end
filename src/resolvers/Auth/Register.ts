@@ -13,7 +13,6 @@ import {
   Ctx,
 } from "type-graphql";
 import { sendEmail } from "../../nodemailer/sendEmail";
-import bcrypt from "bcryptjs";
 
 @Resolver()
 export class RegisterResolver {
@@ -31,22 +30,18 @@ export class RegisterResolver {
       firstName,
       lastName,
       password,
-      tzAbv,
-      tzName,
       artisan,
+      mailingList,
     }: RegisterInput,
     @Ctx() ctx: ExpressContext
   ): Promise<Profile> {
-    const hashedPassword = await bcrypt.hash(password, 12);
-
     const profile = await Profile.create({
       firstName,
       lastName,
       email,
-      password: hashedPassword,
-      tzAbv,
-      tzName,
+      password,
       artisan,
+      mailingList,
     }).save();
 
     setSession(ctx, profile);
