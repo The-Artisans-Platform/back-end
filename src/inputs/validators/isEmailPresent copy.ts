@@ -4,6 +4,8 @@ import {
   ValidatorConstraint,
   ValidatorConstraintInterface,
 } from "class-validator";
+import { LoginInput } from "inputs/LoginInput";
+// import { Message } from "types";
 
 @ValidatorConstraint({ async: true })
 export class IsEmailPresent implements ValidatorConstraintInterface {
@@ -13,8 +15,8 @@ export class IsEmailPresent implements ValidatorConstraintInterface {
   }
 }
 
-export function EmailPresence(validationOptions?: ValidationOptions) {
-  return function (object: object, propertyName: string): void {
+export function EmailPresenceConstraint(validationOptions?: ValidationOptions) {
+  return function (object: LoginInput, propertyName: string): void {
     registerDecorator({
       target: object.constructor,
       propertyName: propertyName,

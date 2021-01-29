@@ -1,16 +1,16 @@
 import { Field, InputType } from "type-graphql";
-import { PasswordInput } from "./PasswordInput";
-import { EmailPresence } from "./validators/isEmailPresent copy";
+import { EmailPresenceConstraint } from "./validators/isEmailPresent copy";
+import { EmptyPasswordConstraint } from "./validators/isPasswordEmpty";
 
 @InputType()
-export class LoginInput extends PasswordInput {
+export class LoginInput {
   @Field()
-  @EmailPresence({ message: "You forgot to put in a email. 😒" })
+  @EmailPresenceConstraint({ message: "You forgot to put in a email. 😒" })
   email: string;
 
-  @Field({ nullable: true })
-  tzAbv: string;
-
-  @Field({ nullable: true })
-  tzName: string;
+  @Field()
+  @EmptyPasswordConstraint({
+    message: "Please enter a password to continue. 🔒",
+  })
+  password: string;
 }

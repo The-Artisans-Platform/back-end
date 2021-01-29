@@ -1,6 +1,6 @@
 import { MiddlewareFn } from "type-graphql";
 
-import { ExpressContext } from "../types";
+import { ExpressContext } from "apollo-server-express";
 
 export const isAuth: MiddlewareFn<ExpressContext> = async (
   { context },

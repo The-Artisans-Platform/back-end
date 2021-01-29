@@ -1,4 +1,4 @@
-import { ExpressContext } from "../../types";
+import { ExpressContext } from "apollo-server-express";
 import { Resolver, Query, Ctx } from "type-graphql";
 
 @Resolver()

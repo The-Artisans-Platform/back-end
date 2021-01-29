@@ -1,10 +1,10 @@
 import { setSession } from "./helpers/index";
-import { ChangePasswordInput } from "./../../inputs/ChangePasswordInput";
-import { redis } from "./../../redis";
-import { forgotPasswordPrefix } from "./../../nodemailer/prefixes";
-import { logger } from "./../../middleware/logger";
-import { ExpressContext } from "./../../types/index";
-import { Profile } from "../../entity/Profile";
+import { ExpressContext } from "apollo-server-express";
+import { Profile } from "entity/Profile";
+import { ChangePasswordInput } from "inputs/ChangePasswordInput";
+import { redis } from "redis";
+import { forgotPasswordPrefix } from "nodemailer/prefixes";
+import { logger } from "middleware/logger";
 import { Resolver, Mutation, Arg, Ctx, UseMiddleware } from "type-graphql";
 
 @Resolver()

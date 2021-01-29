@@ -13,3 +13,6 @@ artisans-platform-0a318c50639c.json
 
 # Redis Data File
 dump.rdb
+
+# Compiled build code for prod
+dist/

@@ -33,7 +33,7 @@ export class Profile extends BaseEntity {
     return `${parent.firstName} ${parent.lastName}`;
   }
 
-  @Column()
+  @Column({ nullable: true })
   password: string;
 
   @Field()
@@ -47,6 +47,14 @@ export class Profile extends BaseEntity {
   @Field()
   @Column("bool", { default: false })
   mailingList: boolean;
+
+  @Field({ nullable: true })
+  @Column("text", { nullable: true })
+  stripeAccountID: string;
+
+  @Field({ nullable: true })
+  @Column("text", { nullable: true })
+  updateStripeInfoLink: string;
 
   @BeforeInsert()
   addId(): void {

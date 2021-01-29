@@ -1,4 +1,4 @@
-import { ExpressContext } from "../../types";
+import { ExpressContext } from "apollo-server-express";
 import { logger } from "../../middleware";
 import { Resolver, Mutation, UseMiddleware, Ctx } from "type-graphql";
 

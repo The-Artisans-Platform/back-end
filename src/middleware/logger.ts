@@ -1,9 +1,12 @@
 import { MiddlewareFn } from "type-graphql";
 
-import { ExpressContext } from "../types";
+import { ExpressContext } from "apollo-server-express";
 
 export const logger: MiddlewareFn<ExpressContext> = async ({ args }, next) => {
-  console.log("args: ", args);
+  // only log on dev and staging environments
+  if (process.env.NODE_ENV !== "production") {
+    console.log("args: ", args);
+  }
 
   return next();
 };

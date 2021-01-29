@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
-// import { ExpressContext } from "../../types";
-// import { Profile } from "../../entity/Profile";
 import { isAuth } from "../../middleware/isAuth";
 import { Resolver, UseMiddleware, Query } from "type-graphql";
 

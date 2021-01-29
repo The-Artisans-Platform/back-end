@@ -1,28 +1,15 @@
 import "reflect-metadata";
 
-require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();
 
-// import path from "path";
-
-import { ExpressContext } from "./types";
+import { ExpressContext } from "apollo-server-express";
 import { ApolloServer } from "apollo-server-express";
 import Express from "express";
 import { createConnection } from "typeorm";
 import session from "express-session";
 import connectRedis from "connect-redis";
 import cors from "cors";
-// import { Storage } from "@google-cloud/storage";
-
-// const storage = new Storage({
-//   keyFilename: path.join(__dirname, "../artisans-platform-0a318c50639c.json"),
-//   projectId: "artisans-platform",
-// });
-
-// storage.getBuckets().then((buckets) => console.log("buckets:", buckets));
-
-// export const tapFilesBucket = storage.bucket("artisans-platform.appspot.com");
-
-// console.log("tapFilesBucket", tapFilesBucket);
 
 import { redis } from "./redis";
 import { createSchema } from "./createSchema";

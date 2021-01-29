@@ -1,4 +1,4 @@
-import { ExpressContext } from "../../types";
+import { ExpressContext } from "apollo-server-express";
 import { Profile } from "../../entity/Profile";
 import { isAuth } from "../../middleware/isAuth";
 import { Resolver, UseMiddleware, Query, Ctx } from "type-graphql";

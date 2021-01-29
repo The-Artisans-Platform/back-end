@@ -4,6 +4,7 @@ import {
   ValidatorConstraint,
   ValidatorConstraintInterface,
 } from "class-validator";
+import { RegisterInput } from "inputs/RegisterInput";
 
 @ValidatorConstraint({ async: true })
 export class IsThatAnEmail implements ValidatorConstraintInterface {
@@ -13,8 +14,10 @@ export class IsThatAnEmail implements ValidatorConstraintInterface {
   }
 }
 
-export function IsThatReallyAnEmail(validationOptions?: ValidationOptions) {
-  return function (object: object, propertyName: string): void {
+export function IsThatReallyAnEmailConstraint(
+  validationOptions?: ValidationOptions
+) {
+  return function (object: RegisterInput, propertyName: string): void {
     registerDecorator({
       target: object.constructor,
       propertyName: propertyName,

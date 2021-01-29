@@ -1,4 +1,4 @@
-import { ExpressContext } from "../../types";
+import { ExpressContext } from "apollo-server-express";
 import { setSession } from "./helpers";
 import { createConfirmationUrl } from "./../../nodemailer/createConfirmationUrl";
 import { Profile } from "../../entity/Profile";

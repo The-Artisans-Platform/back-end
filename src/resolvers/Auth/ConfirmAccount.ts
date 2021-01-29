@@ -1,11 +1,13 @@
-import { confirmProfilePrefix } from "./../../nodemailer/prefixes";
-import { Resolver, Mutation, Arg } from "type-graphql";
+import { confirmProfilePrefix } from "nodemailer/prefixes";
+import { Resolver, Mutation, Arg, UseMiddleware } from "type-graphql";
 
-import { redis } from "../../redis";
-import { Profile } from "../../entity/Profile";
+import { redis } from "redis";
+import { Profile } from "entity/Profile";
+import { logger } from "middleware";
 
 @Resolver()
 export class ConfirmAccountResolver {
+  @UseMiddleware(logger)
   @Mutation(() => Boolean)
   async confirmAccount(@Arg("token") token: string): Promise<boolean> {
     try {

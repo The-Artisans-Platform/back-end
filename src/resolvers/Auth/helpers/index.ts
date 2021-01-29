@@ -1,5 +1,5 @@
+import { ExpressContext } from "apollo-server-express";
 import { Profile } from "./../../../entity/Profile";
-import { ExpressContext } from "./../../../types/index";
 
 export const setSession = (ctx: ExpressContext, profile: Profile): void => {
   if (ctx.req.session) {
