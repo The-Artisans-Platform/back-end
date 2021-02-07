@@ -25,14 +25,7 @@ export class RegisterResolver {
   @Mutation(() => Profile)
   async register(
     @Arg("data")
-    {
-      email,
-      firstName,
-      lastName,
-      password,
-      artisan,
-      mailingList,
-    }: RegisterInput,
+    { email, firstName, lastName, password, mailingList }: RegisterInput,
     @Ctx() ctx: ExpressContext
   ): Promise<Profile> {
     const profile = await Profile.create({
@@ -40,7 +33,6 @@ export class RegisterResolver {
       lastName,
       email,
       password,
-      artisan,
       mailingList,
     }).save();
 

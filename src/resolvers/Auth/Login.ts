@@ -24,12 +24,6 @@ export class LoginResolver {
         throw new Error("Email not found. 🤷‍♂");
       }
 
-      // if (!profile.confirmed) {
-      //   throw new Error(
-      //     "Please check your email to confirm your account. Thanks! 👀"
-      //   );
-      // }
-
       const valid = await bcrypt.compare(password, profile.password);
 
       if (!valid) {

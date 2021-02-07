@@ -40,7 +40,4 @@ export class RegisterInput {
 
   @Field({ nullable: true })
   mailingList: boolean;
-
-  @Field({ nullable: true })
-  artisan: boolean;
 }

@@ -13,7 +13,7 @@ import bcrypt from "bcryptjs";
 @Entity()
 export class Profile extends BaseEntity {
   @Field(() => ID)
-  @PrimaryColumn("uuid")
+  @PrimaryColumn("text")
   id: string;
 
   @Field()
@@ -36,9 +36,13 @@ export class Profile extends BaseEntity {
   @Column({ nullable: true })
   password: string;
 
+  @Field({ nullable: true })
+  @Column("text", { nullable: true })
+  avatar: string;
+
   @Field()
-  @Column({ default: false })
-  artisan: boolean;
+  @Column({ default: "user" })
+  role: "user" | "artisan" | "admin";
 
   @Field()
   @Column("bool", { default: false })
@@ -63,6 +67,8 @@ export class Profile extends BaseEntity {
 
   @BeforeInsert()
   async hashPassword(): Promise<void> {
-    this.password = await bcrypt.hash(this.password, 12);
+    if (this.password) {
+      this.password = await bcrypt.hash(this.password, 12);
+    }
   }
 }
